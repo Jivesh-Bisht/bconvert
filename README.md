@@ -29,9 +29,11 @@ Replace <YouTube_URL> with the URL of the YouTube video you want to download.
 To bulk convert multiple MP4 files to MP3 format, create a folder with the MP4 files you want to convert. Then, run the following command:
 
 ```bash
-python convert.py <Input_Folder_Path> <Output_Folder_Path>
+python convert.py <type> <Input_Folder_Path> <Output_Folder_Path>
 ```
 Replace <Input_Folder_Path> with the path to the folder containing your MP4 files, and <Output_Folder_Path> with the path where you want to save the converted MP3 files.
+
+Replace <type> with either file or folder, if you are converting a single file use file else for bulk converting folders use the folder.
 
 **Interactive Mode:**
 You can also use BConvert in interactive mode. Run the following command to start the interactive mode:
