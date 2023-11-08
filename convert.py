@@ -1,7 +1,11 @@
 from moviepy.editor import VideoFileClip
-import os 
+import os
+import typer
 
-def file_to_file(input_file_path, output_folder):
+app= typer.Typer()
+
+@app.command()
+def file(input_file_path, output_folder):
     try:
         if not os.path.exists(output_folder):
     # If the folder doesn't exist, create it
@@ -31,7 +35,8 @@ def file_to_file(input_file_path, output_folder):
 import os
 from moviepy.editor import VideoFileClip
 
-def folder_to_folder(input_folder, output_folder):
+@app.command()
+def folder(input_folder, output_folder):
     try:
         # Ensure the output folder exists, create it if not
         if not os.path.exists(output_folder):
@@ -57,4 +62,6 @@ def folder_to_folder(input_folder, output_folder):
     except Exception as e:
         print(f"Error occurred: {e}")
 
+if __name__ == "__main__":
+    app()
 

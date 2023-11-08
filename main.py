@@ -1,6 +1,6 @@
-from yt_download import download_and_convert_youtube_video
+from yt_download import download
 import inquirer
-from convert import file_to_file, folder_to_folder
+from convert import file, folder
 
 run = True
 if __name__ == "__main__":
@@ -8,7 +8,8 @@ if __name__ == "__main__":
         cmd = input("[bconvert] ~ ")
         if cmd == 'download':
             youtube_url = input("Enter YouTube video URL: ")
-            download_and_convert_youtube_video(youtube_url) 
+            download(youtube_url)
+
         elif cmd == 'convert':
             z = inquirer.prompt([inquirer.List('fileordir',message="Convert a file or a whole directory? :",choices=['file','directory']),])
             fileordir = z['fileordir']
@@ -20,12 +21,12 @@ if __name__ == "__main__":
                 path = inquirer.prompt(question)
                 out_dir = path['name']
                 path = path['path']
-                file_to_file(path,out_dir)
+                file(path,out_dir)
             else:
                 path = inquirer.prompt([inquirer.Text('path',message='Enter the folder path'), inquirer.Text('name', message="Enter the output folder name"),])
                 out_dir = path['name']
                 path = path['path']
-                folder_to_folder(path,out_dir)
+                folder(path,out_dir)
 
         elif cmd == 'exit':
             run = False

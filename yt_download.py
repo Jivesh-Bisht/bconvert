@@ -3,8 +3,12 @@ from moviepy.editor import *
 import inquirer
 from halo import Halo
 import shutil
+import typer
 
-def download_and_convert_youtube_video(url):
+app = typer.Typer()
+
+@app.command()
+def download(url):
     try:
         # Get YouTube video details
         youtube_video = YouTube(url)
@@ -68,8 +72,6 @@ def download_and_convert_youtube_video(url):
     except Exception as e:
         print("An error occurred:", str(e))
 
-# Example usage
-if __name__ == "__main__":
-    youtube_url = input("Enter YouTube video URL: ")
-    download_and_convert_youtube_video(youtube_url)
 
+if __name__ == "__main__":
+    app()
