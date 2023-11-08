@@ -43,29 +43,21 @@ def download(url):
         if format_choice == "mp4":
             spinner = Halo(text='Downloading the video....', spinner='dots')
             spinner.start()
-            stream = youtube_video.streams.first()
-            stream.download(f'result/mp4/{video_title}.mp4')
+            youtube_video.streams.filter(progressive = True, 
+file_extension = "mp4").first().download(output_path =f"result/mp4", 
+filename = f"{video_title}.mp4")
             spinner.stop()
             print(f"Downloaded the video {video_title} in mp4 in the folder result")
 
         elif format_choice == "mp3":
             # Download video
-            spinner = Halo(text='Downloading the video...', spinner='dots')
+            spinner = Halo(text='Downloading the audio...', spinner='dots')
             spinner.start()
-            stream = youtube_video.streams.first()  
-            filesize = stream.filesize
-            stream.download(f'result/mp3/{video_title}.mp4')
+            stream = youtube_video.streams.filter(only_audio=True).first()  
+            stream.download(f'result/mp3/{video_title}')
             spinner.stop()
 
-            # Convert video to mp3
-            video_clip = VideoFileClip(f"result/mp3/{video_title}.mp4/{video_title}.3gpp")
-            audio_clip = video_clip.audio
-            audio_clip.write_audiofile(f"result/mp3/{video_title}.mp3")
-
-            # Delete the intermediate mp4 file
-            video_clip.close()
-            shutil.rmtree(f"result/mp3/{video_title}.mp4")
-            print("Video downloaded and converted successfully as MP3 format.")
+            print("Downloaded MP3 audio in result/mp3")
         else:
             print("Invalid format choice. Please choose either mp3 or mp4.")
             return
