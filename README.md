@@ -19,7 +19,7 @@ After installation, you can run BConvert from the terminal using the main.py fil
 To download a YouTube video in both MP3 and MP4 formats:
 
 ```bash
-python main.py download --url <YouTube_URL>
+python yt_download.py <YouTube_URL>
 ```
 
 Replace <YouTube_URL> with the URL of the YouTube video you want to download.
@@ -29,7 +29,7 @@ Replace <YouTube_URL> with the URL of the YouTube video you want to download.
 To bulk convert multiple MP4 files to MP3 format, create a folder with the MP4 files you want to convert. Then, run the following command:
 
 ```bash
-python main.py convert --input_folder <Input_Folder_Path> --output_folder <Output_Folder_Path>
+python convert.py <Input_Folder_Path> <Output_Folder_Path>
 ```
 Replace <Input_Folder_Path> with the path to the folder containing your MP4 files, and <Output_Folder_Path> with the path where you want to save the converted MP3 files.
 
