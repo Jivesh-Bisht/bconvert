@@ -2,7 +2,7 @@ from moviepy.editor import VideoFileClip
 import os
 import typer
 
-app= typer.Typer()
+app = typer.Typer()
 
 @app.command()
 def file(input_file_path, output_folder):
@@ -43,7 +43,7 @@ def folder(input_folder, output_folder):
             os.makedirs(output_folder)
         
         # Get all .mp4 files in the input folder
-        mp4_files = [file for file in os.listdir(input_folder) if file.endswith('.mp4')]
+        mp4_files = [file for file in os.listdir(input_folder)]
         
         # Convert each .mp4 file to .mp3
         for mp4_file in mp4_files:
