@@ -25,7 +25,7 @@ def download(url):
         confirmation = inquirer.prompt(vid_title)
 
         if confirmation['title'] != "yes":
-            print("Exiting...")
+            print("Exiting...    Try again with the correct youtube video URL!")
             return
 
         # Choose format (mp3 or mp4)
@@ -44,8 +44,8 @@ def download(url):
             spinner = Halo(text='Downloading the video....', spinner='dots')
             spinner.start()
             youtube_video.streams.filter(progressive = True, 
-file_extension = "mp4").first().download(output_path =f"result/mp4", 
-filename = f"{video_title}.mp4")
+                    file_extension = "mp4").first().download(output_path =f"result/mp4", 
+                    filename = f"{video_title}.mp4")
             spinner.stop()
             print(f"Downloaded the video {video_title} in mp4 in the folder result")
 
@@ -53,8 +53,8 @@ filename = f"{video_title}.mp4")
             # Download video
             spinner = Halo(text='Downloading the audio...', spinner='dots')
             spinner.start()
-            stream = youtube_video.streams.filter(only_audio=True).first()  
-            stream.download(f'result/mp3/{video_title}')
+            stream = youtube_video.streams.filter(only_audio=True,filename = f"{video_title}.mp3").first()  
+            stream.download(f'result/mp3')
             spinner.stop()
 
             print("Downloaded MP3 audio in result/mp3")
